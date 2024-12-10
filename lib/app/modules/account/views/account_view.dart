@@ -9,7 +9,8 @@ class AccountView extends GetView<AccountController> {
 
   @override
   Widget build(BuildContext context) {
-    late dynamic homeController = Get.find<HomeController>().retrievedData ?? {};
+    late dynamic homeController =
+        Get.find<HomeController>().retrievedData ?? {};
     return Scaffold(
       backgroundColor: AppColor.primarycolor,
       appBar: AppBar(
@@ -37,16 +38,22 @@ class AccountView extends GetView<AccountController> {
                       CircleAvatar(
                         radius: 60,
                         backgroundColor: Colors.transparent,
-                        child: Container(child: Image.asset('assets/images/Logo.png', fit: BoxFit.cover,),),
+                        child: Container(
+                          child: Image.asset(
+                            'assets/images/Logo.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-
             Text(
-              homeController != null && homeController['username'] != null ? homeController['username'] : "No username",
+              homeController != null && homeController['username'] != null
+                  ? homeController['username']
+                  : "No username",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -54,7 +61,9 @@ class AccountView extends GetView<AccountController> {
               ),
             ),
             Text(
-             homeController != null && homeController['email'] != null ? homeController['email'] : "No email",
+              homeController != null && homeController['email'] != null
+                  ? homeController['email']
+                  : "No email",
               style: TextStyle(
                 fontSize: 14,
                 color: AppColor.white,
@@ -95,7 +104,7 @@ class AccountView extends GetView<AccountController> {
                 SizedBox(height: 8),
                 GestureDetector(
                   onTap: () {
-                    // Get.toNamed('/checkout');
+                    Get.toNamed('/checkout');
                   },
                   child: Row(
                     children: [
@@ -112,6 +121,34 @@ class AccountView extends GetView<AccountController> {
                       Spacer(),
                       Icon(
                         Icons.arrow_forward_ios,
+                        size: 18,
+                        color: AppColor.white,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 8),
+                Divider(color: AppColor.white),
+                SizedBox(height: 8),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed('/my-orders');
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.shopping_cart_outlined,
+                        color: AppColor.white,
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        'My Orders',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w700),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.document_scanner,
                         size: 18,
                         color: AppColor.white,
                       ),

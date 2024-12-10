@@ -10,10 +10,10 @@ class SingleProductView extends GetView<SingleProductController> {
 
   @override
   Widget build(BuildContext context) {
-    final WooProduct? product = Get.arguments;  
+    final WooProduct? product = Get.arguments;
     return Scaffold(
-      backgroundColor: Color(0xFFB5D1DA),
-      body:DraggableScrollableSheet(
+        backgroundColor: Color(0xFFB5D1DA),
+        body: DraggableScrollableSheet(
           initialChildSize: 0.9,
           minChildSize: 0.9,
           maxChildSize: 0.9,
@@ -63,8 +63,12 @@ class SingleProductView extends GetView<SingleProductController> {
                           children: [
                             Align(
                               alignment: Alignment.center,
-                              child: Image.network(product?.images?.first.src ?? '',
-                                  height: 250, width: MediaQuery.of(context).size.width * 0.6, fit: BoxFit.contain),
+                              child: Image.network(
+                                  product?.images?.first.src ?? '',
+                                  height: 250,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  fit: BoxFit.contain),
                             ),
                             SizedBox(height: 20),
                             Text(
@@ -77,8 +81,10 @@ class SingleProductView extends GetView<SingleProductController> {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              product?.description ?? "No description available",
-                              style: TextStyle(fontSize: 15, color: Colors.white),
+                              product?.description ??
+                                  "No description available",
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.white),
                               maxLines: 5,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -131,7 +137,8 @@ class SingleProductView extends GetView<SingleProductController> {
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColor.yellowish,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50),
+                                          borderRadius:
+                                              BorderRadius.circular(50),
                                         ),
                                       ),
                                     ),
@@ -143,7 +150,8 @@ class SingleProductView extends GetView<SingleProductController> {
                                     height: 50,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        Get.find<CartController>().addToCart(product!.id.toString());
+                                        Get.find<CartController>()
+                                            .addToCart(product!.id.toString());
                                         // Get.find().CartController.addToCart(product!.id);
                                       },
                                       child: Text(
@@ -158,7 +166,8 @@ class SingleProductView extends GetView<SingleProductController> {
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColor.white,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50),
+                                          borderRadius:
+                                              BorderRadius.circular(50),
                                         ),
                                       ),
                                     ),
@@ -176,8 +185,6 @@ class SingleProductView extends GetView<SingleProductController> {
               ),
             );
           },
-        )
-      
-    );
+        ));
   }
 }

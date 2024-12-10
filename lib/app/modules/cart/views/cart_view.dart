@@ -33,8 +33,9 @@ class CartView extends GetView<CartController> {
                   var item = controller.cartItems[index];
                   // calculate the total price manually from items(quantity will be 1 for every item)
                   var totalPrice = double.parse(item.lineTotal!) / 100;
-                  print("Total Price: $totalPrice");                 
-                  totalprice += totalPrice.toInt() * controller.cartItems.length;//+
+                  print("Total Price: $totalPrice");
+                  totalprice +=
+                      totalPrice.toInt() * controller.cartItems.length; //+
                   print("Total Price: $totalprice");
                   return Padding(
                     padding: EdgeInsets.only(bottom: 20),
@@ -156,4 +157,3 @@ class CartView extends GetView<CartController> {
     );
   }
 }
-

@@ -5,7 +5,7 @@ import '../../../../utilities/colors.dart';
 import 'package:flutter/cupertino.dart';
 
 class LoginView extends GetView<LoginController> {
-   final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,30 +132,32 @@ class LoginView extends GetView<LoginController> {
                                 vertical: 16,
                                 horizontal: 20,
                               ),
-                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
                               suffixIcon: IconButton(
-                                      icon: Icon(
-                                        controller.isPasswordVisible.value
-                                            ? Icons.visibility
-                                            : Icons.visibility_off,
-                                        color: AppColor.darkskyblue,
-                                      ),
-                                      onPressed: () {
-                                        controller.togglePasswordVisibility();
-                                      },
-                                    ),),
-                               obscureText: !controller.isPasswordVisible.value,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter your password";
-                                  } else if (value.length < 8) {
-                                    return "Password must be at least 8 characters long";
-                                  }
-                                  return null;
+                                icon: Icon(
+                                  controller.isPasswordVisible.value
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: AppColor.darkskyblue,
+                                ),
+                                onPressed: () {
+                                  controller.togglePasswordVisibility();
                                 },
+                              ),
+                            ),
+                            obscureText: !controller.isPasswordVisible.value,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter your password";
+                              } else if (value.length < 8) {
+                                return "Password must be at least 8 characters long";
+                              }
+                              return null;
+                            },
                             style: TextStyle(
                               color: AppColor.darkskyblue,
-                            ),                         
+                            ),
                           ),
                         ),
                         Align(
@@ -177,54 +179,58 @@ class LoginView extends GetView<LoginController> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),                      
-                         Obx(() => SizedBox(
+                        SizedBox(height: 20),
+                        Obx(
+                          () => SizedBox(
                             width: Get.width,
-                          height: 50,
-                           child: ElevatedButton(
-                                 onPressed: controller.loader.value
-                                     ? null // Disable button when loading
-                                     : () {
-                                         if (_formKey.currentState!.validate()) {
-                                           controller.loginCustomer();
-                                         }
-                                       },
-                                 style: ButtonStyle(
-                                   shape: WidgetStateProperty.all<
-                                       RoundedRectangleBorder>(
-                                     RoundedRectangleBorder(
-                                       borderRadius: BorderRadius.circular(8.0),
-                                     ),
-                                   ),
-                                   backgroundColor:
-                                       WidgetStateProperty.resolveWith<Color>(
-                                     (Set<WidgetState> states) {
-                                       if (states.contains(WidgetState.disabled)) {
-                                         return const Color.fromARGB(255, 155, 149, 97); 
-                                       }
-                                       return AppColor.yellowish; // Enabled button color
-                                     },
-                                   ),
-                                   foregroundColor:
-                                       WidgetStateProperty.all(Colors.white),
-                                 ),                      
-                                 child: controller.loader.value
-                                     ? const SizedBox(
-                                         height: 30,
-                                         width: 30,
-                                         child: CircularProgressIndicator(
-                                           strokeWidth: 3,
-                                           color: Colors.black,
-                                         ),
-                                       )
-                                     : const Text(
-                                         'Sign in',
-                                         style: TextStyle(
-                                           fontWeight: FontWeight.bold,
-                                         ),
-                                       ),
-                               ),
-                         )),
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: controller.loader.value
+                                  ? null // Disable button when loading
+                                  : () {
+                                      if (_formKey.currentState!.validate()) {
+                                        controller.loginCustomer();
+                                      }
+                                    },
+                              style: ButtonStyle(
+                                shape: WidgetStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                backgroundColor:
+                                    WidgetStateProperty.resolveWith<Color>(
+                                  (Set<WidgetState> states) {
+                                    if (states.contains(WidgetState.disabled)) {
+                                      return const Color.fromARGB(
+                                          255, 155, 149, 97);
+                                    }
+                                    return AppColor
+                                        .yellowish; // Enabled button color
+                                  },
+                                ),
+                                foregroundColor:
+                                    WidgetStateProperty.all(Colors.white),
+                              ),
+                              child: controller.loader.value
+                                  ? const SizedBox(
+                                      height: 30,
+                                      width: 30,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 3,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  : const Text(
+                                      'Sign in',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                        ),
                         SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

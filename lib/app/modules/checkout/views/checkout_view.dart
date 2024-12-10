@@ -22,157 +22,178 @@ class CheckoutView extends GetView<CheckoutController> {
         backgroundColor: AppColor.darkskyblue,
         foregroundColor: AppColor.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Payment Steps
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Icon(Icons.shopping_bag, color: AppColor.darkskyblue),
-                    Text(
-                      'My Cart',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.darkskyblue,
-                      ),
-                    ),
-                  ],
+            Text(
+              'BILLING DETAILS',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 15),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "First Name",
+                labelStyle: TextStyle(
+                  color: Color(0xFFB8B8B8),
                 ),
-                Expanded(
-                  child: Divider(
-                    color: Colors.grey,
-                    thickness: 1,
-                    indent: 10,
-                    endIndent: 10,
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+              ),
+              style: TextStyle(
+                color: AppColor.darkskyblue,
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+            SizedBox(height: 15),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Last Name",
+                labelStyle: TextStyle(
+                  color: Color(0xFFB8B8B8),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+              ),
+              style: TextStyle(
+                color: AppColor.darkskyblue,
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+            SizedBox(height: 15),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Your Email",
+                labelStyle: TextStyle(
+                  color: Color(0xFFB8B8B8),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+              ),
+              style: TextStyle(
+                color: AppColor.darkskyblue,
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+            SizedBox(height: 32),
+            Text(
+              'ADDITIONAL INFORMATION',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(height: 32),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4,
                   ),
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.payment, color: Colors.grey),
-                    Text(
-                      'Payment',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
+                ],
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(
+                        top: 20, left: 15, right: 15, bottom: 25),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: AppColor.yellowish, width: 1),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-
-            // Payment Summary
-            Text(
-              'Payment Summary',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: AppColor.darkskyblue,
-              ),
-            ),
-            SizedBox(height: 10),
-            _buildSummaryRow('Sub Total', '\$88.00'),
-            _buildSummaryRow('Discount', '-\$4.50', isDiscount: true),
-            _buildSummaryRow('Tax', '+\$3.00'),
-            SizedBox(height: 20),
-
-            // Shipping Options
-            Text(
-              'Shipping',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: AppColor.darkskyblue,
-              ),
-            ),
-            RadioListTile(
-              title: Text("Flat Rate"),
-              value: "flat",
-              groupValue: "local",
-              onChanged: (value) {},
-            ),
-            RadioListTile(
-              title: Text("Free"),
-              value: "free",
-              groupValue: "local",
-              onChanged: (value) {},
-            ),
-            RadioListTile(
-              title: Text("Local Pickup"),
-              value: "local",
-              groupValue: "local",
-              onChanged: (value) {},
-            ),
-            SizedBox(height: 20),
-
-            // Total Payment Amount
-            _buildSummaryRow(
-              'Total Payment Amount',
-              '\$89.00',
-              isTotal: true,
-            ),
-            SizedBox(height: 20),
-
-            // Billing Address
-            Text(
-              'Billing Address',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: AppColor.darkskyblue,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              '100 Jericho Turnpike, Westbury, New York,\n'
-              'NY 11590, United States (USA)\n'
-              '56481535',
-              style: TextStyle(color: Colors.grey),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Text(
-                'Default',
-                style: TextStyle(color: AppColor.darkskyblue),
+                    child: Text(
+                      'YOUR ORDER',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: AppColor.yellowish,
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Book × 2',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: Text(
+                      '\$88.00',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppColor.brown,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Book × 2',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: Text(
+                      '\$88.00',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppColor.brown,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      'Total',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.yellowish,
+                        fontSize: 18,
+                      ),
+                    ),
+                    trailing: Text(
+                      '\$88.00',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  // Helper method for summary rows
-  Widget _buildSummaryRow(String title, String amount,
-      {bool isDiscount = false, bool isTotal = false}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: isTotal ? 18 : 14,
-              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-              color: isTotal ? AppColor.darkskyblue : Colors.black,
-            ),
-          ),
-          Text(
-            amount,
-            style: TextStyle(
-              fontSize: isTotal ? 18 : 14,
-              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-              color: isDiscount ? Colors.green : Colors.black,
-            ),
-          ),
-        ],
       ),
     );
   }
